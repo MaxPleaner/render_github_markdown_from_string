@@ -3,6 +3,7 @@ class GithubMarkdown
     @string = string
   end
   def render
+    `mkdir tmp` unless Dir.exists? "tmp"
     tempfile_path = "./tmp/github_markdown_file.tmp"
     File.open(tempfile_path, 'w') { |f| f.write @string }
     `cat "#{tempfile_path}" | pandoc -f markdown_github`
